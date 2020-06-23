@@ -57,3 +57,34 @@ function findLongestWordLength(str) {
 }
 
 console.log(findLongestWordLength("The quick brown fox jumped over the lazy dog"));
+
+//Challenge 5 - Return Largest Numbers in Arrays
+
+//Solution 1 - Procedural Approach
+function largestOfFour(arr) {
+  var results = [];
+  for (var i = 0; i < arr.length; i++) {
+    var longestArr = arr[i][0];
+    for (var j = 1; j < arr[i].length; j++) {
+      if (arr[i][j] > longestArr) {
+        longestArr = arr[i][j];
+      }
+    }
+  results[i] = longestArr
+  }
+  return results;
+}
+
+console.log(largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]))
+
+//Solution 2 - Declaritive Approach // Map and Reduce Hiher order functions
+
+function largestOfFour2(arr) {
+  return arr.map( (group) => {
+    return group.reduce( (a, b) => {
+      return b > a ? b : a
+    })
+  })
+}
+
+console.log(largestOfFour2([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]))

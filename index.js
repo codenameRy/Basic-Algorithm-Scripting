@@ -1,4 +1,4 @@
-//Challenge 1 - Convert Celsius to Farenheit
+ //Challenge 1 - Convert Celsius to Farenheit
 
 function convertToF(celsius) {
   let fahrenheit = celsius * 9/5 + 32;
@@ -88,3 +88,59 @@ function largestOfFour2(arr) {
 }
 
 console.log(largestOfFour2([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]))
+
+//Challenge 6 - Confirm the Ending of String
+
+//Solution 1
+function confirmEnding(str, target) {
+  //Split array into different words
+  let split = str.split(" ");
+  //Check if split length is 1 for one word or greater > than 1 for multi word
+  if(split.length > 1){
+    let lastWord = split[split.length - 1];
+    return lastWord.substring(lastWord.lastIndexOf(target)) === target;
+  } else {
+    return str.substring(str.lastIndexOf(target)) === target;
+  }
+}
+
+console.log(confirmEnding("Open sesame house", "same"));
+
+//Solution 2 - Declaritive Approach
+function confirmEnding2(str, target) {
+  //Slice method to copy the string 
+  //str.length - starting index 
+  //target.length - ending index
+  return str.slice(str.length - target.length) === target;
+}
+
+console.log(confirmEnding2("He has to give me a new name", "name"));
+
+//Challenge 7 - Repeat a String Repeat a String
+
+//Solution 1 - While Loop
+function repeatStringNumTimes(string, times) {
+  //Create an empty string variable to store the repeated word
+  var repeatedString = "";
+  //while loop to repeat as needed
+  while (times > 0) {
+    repeatedString += string; //Add string to repeatStr variable
+    times--; //Decrement from n times to zero
+  }
+  return repeatedString;
+}
+
+console.log(repeatStringNumTimes("abc", 3));
+
+//Solution 2 ES6 Repeat method
+function repeatStringNumTimes2(string, times) {
+  //If times is positive, return the repeated string
+  if (times > 0) { // (3 > 0) => true
+    return string.repeat(times); // return "abc".repeat(3); => return "abcabcabc";
+  }
+  //Else if times is negative, return an empty string if true
+  else {
+    return "";
+  }
+}
+console.log(repeatStringNumTimes2("yo", 2));

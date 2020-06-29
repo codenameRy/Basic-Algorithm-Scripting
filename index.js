@@ -144,3 +144,76 @@ function repeatStringNumTimes2(string, times) {
   }
 }
 console.log(repeatStringNumTimes2("yo", 2));
+
+//Challenge 7 - Truncate a String
+
+//Solution 1 - Using If Statement and Slice
+function truncateString(str, num) {
+  // Clear out that junk in your trunk
+  if (str.length > num) {
+    return str.slice(0, num) + "...";
+  } else {
+    return str;
+  }
+}
+
+console.log(truncateString("If you are reading this", 8));
+
+//Solution 2 - Using ternary and slice
+function truncateString2(str, num) {
+  return str.length > num ? str.slice(0, num) + "..." : str 
+}
+
+console.log(truncateString2("A-tisket a-tasket A green and yellow basket", 8));
+
+//Challenge 8 - Finders Keepers
+/*Create a function that looks through an array (first argument) and returns the first element in the array that passes a truth test (second argument). If no element passes the test, return undefined.*/
+
+//Solution 1 - For Loop with If Statement
+function findElement(arr, func) {
+  let num = 0;
+
+  for (var i = 0; i < arr.length; i++) {
+    num = arr[i];
+    if (func(num)) {
+      return num;
+    }
+  }
+
+  return undefined;
+}
+
+console.log(findElement([1, 2, 3, 18], num => num % 2 === 0));
+
+//Solution 2 - Higher Order Function --> Find
+
+function findElement2(arr, func) {
+  return arr.find(func);
+}
+
+console.log(findElement2([1, 3, 4, 9], function(num) { return num % 2 === 0; }));
+
+//Challenge 9 - Boo Who
+/* Check if a value is classified as a boolean primitive. Return true or false.*/
+
+//Solution 1 - Using TypeOf
+
+function booWho(bool) {
+  return typeof bool === "boolean";
+}
+
+booWho(true);
+
+
+//Solution 2 - Using Strict ===
+
+function booWho2(bool) {
+  if(bool === true || bool === false){
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+booWho2(false);

@@ -217,3 +217,88 @@ function booWho2(bool) {
 }
 
 booWho2(false);
+
+//CHallenge 10 - Title Case a Sentence
+
+
+//Solution 1 - For Loop
+function titleCase(str) {
+  str = str.toLowerCase().split(' ');
+  for (var i = 0; i < str.length; i++) {
+    str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+  }
+  return str.join(' ');
+}
+console.log(titleCase("I'm a little tea pot"));
+
+//Solution 2 - Map method
+function titleCase2(str){
+  return str.toLowerCase().split(' ').map((word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }).join(' ')
+}
+
+console.log(titleCase2("In the ny state of mind"));
+
+//Solution 3 - Map and Replace Methods
+
+function titleCase3(str) {
+  return str.toLowerCase().split(' ').map(function(word) {
+    return word.replace(word[0], word[0].toUpperCase());
+  }).join(' ');
+}
+console.log(titleCase3("live your life free"));
+
+//Challenge 11 - Slice and Splice 
+/* Use Slice and Splice to copy 1st array into 2nd array, starting at the nth index of the 2nd array
+
+frankenSplice([1, 2], ["a", "b"], 1) should return ["a", 1, 2, "b"].
+
+*/
+
+//Solution 1 - For Loop
+function frankenSplice(arr1, arr2, n) {
+  let copyArr = arr2.slice()
+  for (let i = 0; i < arr1.length; i++) {
+    copyArr.splice(n, 0, arr1[i]);
+    n++;
+  }
+  return copyArr;
+}
+
+console.log(frankenSplice([1, 2, 3], [4, 5, 6], 1));
+
+//Solution 2 - Slice, Splice, and Spread Operator
+
+function frankenSplice2(arr1, arr2, n) {
+  let copyArr = arr2.slice();
+  copyArr.splice(n, 0, ...arr1);
+  return copyArr;
+}
+
+console.log(frankenSplice2(["claw", "tentacle"], ["head", "shoulders", "knees", "toes"], 2))
+
+//Challenge 12 - Falsy Bouncer
+/* Remove all falsy values from an array.
+
+Falsy values in JavaScript are false, null, 0, "", undefined, and NaN.
+
+Hint: Try converting each value to a Boolean.*/
+
+//Solution 1 - For Loop
+function bouncer(arr) {
+  let newArray = [];
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i]) newArray.push(arr[i]);
+  }
+  return newArray;
+}
+console.log(bouncer([7, "ate", "", false, 9]));
+
+//Solution 2 - Filter Method and Boolean
+
+function bouncer2(arr) {
+  return arr.filter(Boolean)
+}
+
+console.log(bouncer(["a", false, "b", "c", ""]));

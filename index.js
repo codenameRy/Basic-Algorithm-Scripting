@@ -302,3 +302,21 @@ function bouncer2(arr) {
 }
 
 console.log(bouncer(["a", false, "b", "c", ""]));
+
+//Challenge 13 - Where do I Belong
+
+/*  find where in the array a number should be inserted by order, and return the index where it should go.*/
+
+function getIndexToIns(arr, num) {
+  arr.sort(function(a, b) {
+    return a - b;
+  });
+
+  for (var a = 0; a < arr.length; a++) {
+    if (arr[a] >= num) return a;
+  }
+
+  return arr.length;
+}
+
+console.log(getIndexToIns([40, 60], 40))

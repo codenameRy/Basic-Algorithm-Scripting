@@ -305,10 +305,12 @@ console.log(bouncer(["a", false, "b", "c", ""]));
 
 //Challenge 13 - Where do I Belong
 
-/*  find where in the array a number should be inserted by order, and return the index where it should go.*/
-
+/*  find where in the array a number should be inserted by order, and return the index where it should go.
+For example, getIndexToIns([1,2,3,4], 1.5) should return 1 because it is greater than 1 (index 0), but less than 2 (index 1).
+*/
+//Solution 1 - Sort with For Loop. Finding the item in array that is greater than number and return index
 function getIndexToIns(arr, num) {
-  arr.sort(function(a, b) {
+  arr.sort((a, b) => {
     return a - b;
   });
 
@@ -319,4 +321,85 @@ function getIndexToIns(arr, num) {
   return arr.length;
 }
 
-console.log(getIndexToIns([40, 60], 40))
+console.log(getIndexToIns([40, 60], 50))
+
+//Solution 2 - Push new number, sort, and return indexOf new number
+
+function getIndexToIns2(arr, num) {
+  arr.push(num);
+  arr.sort((a,b) => {
+    return a - b;
+  })
+
+  return arr.indexOf(num)
+}
+
+console.log(getIndexToIns2([10, 20, 30, 40, 50], 35))
+
+//Solution 3 - Method Chaining with concat, sort, and indexOf methods
+
+function getIndexToIns3(arr, num) {
+  return arr
+    .concat(num)
+    .sort((a, b) => a - b)
+    .indexOf(num);
+}
+
+console.log(getIndexToIns3([1, 2, 3, 4], 6))
+
+//Challenges 14 - Mutations
+/* Return true if the string in the first element of the array contains all of the letters of the string in the second element of the array.*/
+
+//Solution 1 - Declaritive
+function mutation(arr) {
+  return arr[1]
+    .toLowerCase()
+    .split("")
+    .every(function(letter) {
+      return arr[0].toLowerCase().indexOf(letter) != -1;
+    });
+}
+
+console.log(mutation(["hello", "hey"]))
+
+//Solution 2 - Procedural
+
+function mutation2(arr) {
+  var test = arr[1].toLowerCase();
+  var target = arr[0].toLowerCase();
+  for (var i = 0; i < test.length; i++) {
+    if (target.indexOf(test[i]) < 0) return false;
+  }
+  return true;
+}
+
+console.log(mutation2(["travel", "travel"]))
+
+//Challenge 15 - Chunky Monkey
+
+/* Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array.*/
+
+//Solution 1 - For Lop with push and slice methods
+
+function chunkArrayInGroups(arr, size) {
+  // Break it up.
+  var arr2 = [];
+  for (var i = 0; i < arr.length; i += size) {
+    arr2.push(arr.slice(i, i + size));
+  }
+  return arr2;
+}
+
+console.log(chunkArrayInGroups(["a", "b", "c", "d"], 2))
+
+//SOlution 2 - While Loop with push and splice methods
+
+function chunkArrayInGroups2(arr, size) {
+  var newArr = [];
+  while (arr.length) {
+    newArr.push(arr.splice(0, size));
+  }
+  return newArr;
+}
+
+console.log(chunkArrayInGroups2([0, 1, 2, 3, 4, 5, 6, 7, 8], 4))
